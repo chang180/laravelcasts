@@ -14,10 +14,9 @@ class DatabaseSeeder extends Seeder
     {
         \App\Models\User::factory(10)->create();
 
-        \App\Models\Course::factory()->create(['title' => 'Course A', 'description' => 'Course A description']);
-        \App\Models\Course::factory()->create(['title' => 'Course B', 'description' => 'Course B description']);
-        \App\Models\Course::factory()->create(['title' => 'Course C', 'description' => 'Course C description']);
-
+        \App\Models\Course::factory()->create(['title' => 'Course A', 'description' => 'Course A description', 'released_at' => \Carbon\Carbon::now()]);
+        \App\Models\Course::factory()->create(['title' => 'Course B', 'description' => 'Course B description', 'released_at' => \Carbon\Carbon::yesterday()]);
+        \App\Models\Course::factory()->create(['title' => 'Course C', 'description' => 'Course C description', 'released_at' => \Carbon\Carbon::tomorrow()]);
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

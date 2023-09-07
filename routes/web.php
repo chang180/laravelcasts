@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageCourseDetailsController;
 use App\Http\Controllers\PageHomeController;
-use App\Models\Course;
+use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,6 @@ use App\Models\Course;
 */
 
 Route::get('/', PageHomeController::class)->name('home');
+
+Route::get('/course/{course:slug}', PageCourseDetailsController::class)
+    ->name('course-details');
