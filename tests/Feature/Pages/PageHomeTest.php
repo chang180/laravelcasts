@@ -2,11 +2,8 @@
 
 use App\Models\Course;
 use Carbon\Carbon;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 use function Pest\Laravel\get;
-
-uses(RefreshDatabase::class);
 
 it('shows courses overviews', function () {
     // Arrange
@@ -49,4 +46,22 @@ it('shows courses by release date', function () {
             $releasedCourse->title,
         ]);
 
+});
+
+it('includes login if not logged in', function () {
+    // Act & Assert
+    get(route('pages.home'))
+        ->assertOk()
+        ->assertSeeText('Login')
+        ->assertSee(route('login'))
+        ->assertDontSeeText('Log out');
+});
+
+it('includes logout if logged in', function () {
+    // Act & Assert
+    loginAsUser();
+    get(route('pages.home'))
+        ->assertSeeText('Log out')
+        ->assertSee(route('logout'))
+        ->assertDontSeeText('Login');
 });

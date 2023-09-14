@@ -4,11 +4,6 @@ use App\Models\Course;
 use App\Models\Video;
 
 use function Pest\Laravel\get;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-
-
-
-uses(RefreshDatabase::class);
 
 it('does not find unreleased courses', function () {
     // Arrange
