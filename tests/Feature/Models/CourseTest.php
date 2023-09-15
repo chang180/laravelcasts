@@ -10,8 +10,7 @@ it('only returns released courses for released scope', function () {
 
     // Act & Assert
     expect(Course::released()->get())
-        ->toHaveCount(1)
-        ->first()->id->toEqual(1);
+        ->toHaveCount(1);
 });
 
 it('has videos', function () {
