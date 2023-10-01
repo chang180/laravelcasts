@@ -42,3 +42,20 @@ it('shows course video count', function () {
         ->assertOk()
         ->assertSeeText('3 videos');
 });
+
+it('includes checkout button', function () {
+    // Arrange
+    config()->set('services.checkout.store', 'store');
+    $course = Course::factory()
+        ->released()
+        ->create(
+        [
+            'checkout_id' => 'checkout_id',
+        ]
+    );
+
+    // Act & Assert
+    get(route('pages.course-details', $course))
+        ->assertOk()
+        ->assertSee('https://ccore.newebpay.com/EPG/store',false);
+});

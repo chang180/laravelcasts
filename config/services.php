@@ -31,4 +31,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'checkout' => [
+        'store' => env('CHECKOUT_STORE'),
+    ]
+
 ];

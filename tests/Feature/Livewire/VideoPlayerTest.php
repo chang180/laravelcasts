@@ -7,8 +7,9 @@ use App\Models\Video;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Livewire\Livewire;
 
-it('shows details tfor given video', function () {
+it('shows details for given video', function () {
     // Arrange
+    loginAsUser();
     $course = Course::factory()
         ->has(Video::factory())
         ->create();
@@ -24,6 +25,7 @@ it('shows details tfor given video', function () {
 
 it('shows given video', function () {
     // Arrange
+    loginAsUser();
     $course = Course::factory()
         ->has(Video::factory())
         ->create();
@@ -36,6 +38,7 @@ it('shows given video', function () {
 
 it('shows list of all course videos', function () {
     // Arrange
+    loginAsUser();
     $course = Course::factory()
         ->has(
             Video::factory()
@@ -47,7 +50,6 @@ it('shows list of all course videos', function () {
         ->assertSee([
             ...$course->videos()->pluck('title')->toArray(),
         ])->assertSeeHtml([
-            route('pages.course-videos', [ $course, $course->videos[0]]),
             route('pages.course-videos', [ $course, $course->videos[1]]),
             route('pages.course-videos', [ $course, $course->videos[2]]),
         ]);

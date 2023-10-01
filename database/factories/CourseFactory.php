@@ -18,6 +18,7 @@ class CourseFactory extends Factory
     public function definition(): array
     {
         return [
+            'checkout_id' => $this->faker->uuid,
             'slug' => $this->faker->slug,
             'title' => $this->faker->sentence,
             'description' => $this->faker->paragraph,
