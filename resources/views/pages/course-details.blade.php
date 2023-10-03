@@ -5,8 +5,13 @@
 <ul>
     @foreach($course->learnings as $learning)
         <li>
-            <div>{{ $learning }}</div><span>{{ "https://ccore.newebpay.com/EPG/".config('services.checkout.store')}} / {{ $course->checkout_id }} </span>
+            {{  $learning }}
         </li>
     @endforeach
 </ul>
 <img src="{{ asset("images/$course->image_name") }}" alt="Image of course {{ $course->title }}">
+<a href="#!" class="paddle_button" data-product="{{ $course->paddle_product_id }}">Buy Now!</a>
+<script src="https://cdn.paddle.com/paddle/paddle.js"></script>
+<script type="text/javascript">
+	Paddle.Setup({ vendor: {{ config('services.paddle.vendor-id') }} });
+</script>

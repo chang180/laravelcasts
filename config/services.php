@@ -31,8 +31,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
-    'checkout' => [
-        'store' => env('CHECKOUT_STORE'),
+    'paddle' => [
+        'vendor-id' => env('PADDLE_VENDOR_ID'),
     ]
 
 ];

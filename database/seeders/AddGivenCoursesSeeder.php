@@ -18,6 +18,7 @@ class AddGivenCoursesSeeder extends Seeder
             return;
         }
         Course::create([
+            'paddle_product_id' => 'pro_01hbstvdtddp3rpp2haxc95r92',
             'slug' => Str::of('Laravel For Beggins')->slug(),
             'title' => 'Laravel For Beggins',
             'tagline' => 'The PHP Framework for Web Artisans',
@@ -32,6 +33,7 @@ class AddGivenCoursesSeeder extends Seeder
         ]);
 
         Course::create([
+            'paddle_product_id' => 'pro_01hbstzfwv0hrm49qfyhsmqtnq',
             'slug' => Str::of('Advanced Laravel')->slug(),
             'title' => 'Advanced Laravel',
             'tagline' => 'The PHP Framework for Web Artisans',
@@ -46,6 +48,7 @@ class AddGivenCoursesSeeder extends Seeder
         ]);
 
         Course::create([
+            'paddle_product_id' => 'pro_01hbsty6b64y0326zwe6vqyg32',
             'slug' => Str::of('TDD The Laravel Way')->slug(),
             'title' => 'TDD The Laravel Way',
             'tagline' => 'The PHP Framework for Web Artisans',
