@@ -1,11 +1,11 @@
 <h2>{{ $course->title }}</h2>
 <h3>{{ $course->tagline }}</h3>
 <p>{{ $course->description }}</p>
-<p>{{ $course->videos_count}} videos</p>
+<p>{{ $course->videos_count }} videos</p>
 <ul>
-    @foreach($course->learnings as $learning)
+    @foreach ($course->learnings as $learning)
         <li>
-            {{  $learning }}
+            {{ $learning }}
         </li>
     @endforeach
 </ul>
@@ -13,5 +13,6 @@
 <a href="#!" class="paddle_button" data-product="{{ $course->paddle_product_id }}">Buy Now!</a>
 <script src="https://cdn.paddle.com/paddle/paddle.js"></script>
 <script type="text/javascript">
-	Paddle.Setup({ vendor: {{ config('services.paddle.vendor-id') }} });
+    Paddle.Environment.set('sandbox');
+    Paddle.Setup({ vendor: {{ config('services.paddle.vendor-id') }} });
 </script>
