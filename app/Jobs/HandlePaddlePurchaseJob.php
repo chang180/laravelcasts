@@ -2,15 +2,17 @@
 
 namespace App\Jobs;
 
+use App\Mail\NewPurchaseMail;
 use App\Models\Course;
 use App\Models\User;
-use Illuminate\Support\Str;
 use Illuminate\Bus\Queueable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 use Spatie\WebhookClient\Jobs\ProcessWebhookJob;
 
 class HandlePaddlePurchaseJob extends ProcessWebhookJob implements ShouldQueue
@@ -23,13 +25,20 @@ class HandlePaddlePurchaseJob extends ProcessWebhookJob implements ShouldQueue
      */
     public function handle(): void
     {
-        $user = User::create([
-            'name' => $this->webhookCall->payload['name'],
-            'email' => $this->webhookCall->payload['email'],
-            'password' => bcrypt(Str::uuid())
-        ]);
+        $user = User::where('email', $this->webhookCall->payload['email'])->first();
+
+        if (!$user) {
+            $user = User::create([
+                'name' => $this->webhookCall->payload['name'],
+                'email' => $this->webhookCall->payload['email'],
+                'password' => bcrypt(Str::uuid())
+            ]);
+        }
 
         $course = Course::where('paddle_product_id', $this->webhookCall->payload['p_product_id'])->first();
         $user->purchasedCourses()->attach($course);
+
+        Mail::to($user)
+            ->send(new NewPurchaseMail($course));
     }
 }
