@@ -4,6 +4,7 @@ use App\Http\Controllers\PageCourseDetailsController;
 use App\Http\Controllers\PageDashboardController;
 use App\Http\Controllers\PageHomeController;
 use App\Http\Controllers\PageVideosController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -34,3 +35,8 @@ Route::middleware([
 });
 
 Route::webhooks('webhooks');
+
+Route::get('/pay', function () {
+    return view('pay');
+});
+Route::post('/pay', [PaymentController::class, 'payment'])->name('pay');

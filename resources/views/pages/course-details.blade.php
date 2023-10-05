@@ -10,11 +10,28 @@
     @endforeach
 </ul>
 <img src="{{ asset("images/$course->image_name") }}" alt="Image of course {{ $course->title }}">
-<a href="#!" class="paddle_button" data-product="{{ $course->paddle_product_id }}">Buy Now!</a>
+{{-- <a href="#" class="paddle_button" data-product="{{ $course->paddle_product_id }}">Buy Now!</a> --}}
+<a href="#" class="paddle_button" data-theme='dark'
+    data-items='[
+    {
+        "priceId": "pri_01hbstwqgyjddnt05sywc3swnz",
+        "quantity": 1
+    }
+]'>Buy Now!</a>
+<form action="/pay" method="POST">
+    @csrf
+    <button>付款</button>
+</form>
 <script src="https://cdn.paddle.com/paddle/paddle.js"></script>
-<script type="text/javascript">
+{{-- <script type="text/javascript">
     Paddle.Environment.set('sandbox');
+    Paddle.Setup({ vendor: {{ config('services.paddle.vendor-id') }} });
+</script> --}}
+
+<script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+<script type="text/javascript">
+    Paddle.Environment.set("sandbox");
     Paddle.Setup({
-        vendor: {{ config('services.paddle.vendor-id') }},
+        seller: {{ config('services.paddle.vendor-id') }}
     });
 </script>
