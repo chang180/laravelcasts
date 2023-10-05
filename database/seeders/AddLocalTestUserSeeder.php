@@ -14,6 +14,10 @@ class AddLocalTestUserSeeder extends Seeder
      */
     public function run(): void
     {
+        if ($this->isDataAlreadyGiven()) {
+            return;
+        }
+
         if (App::environment() === 'local') {
             User::create([
                 'name' => 'Chang180',
@@ -22,5 +26,10 @@ class AddLocalTestUserSeeder extends Seeder
             ]);
         }
 
+    }
+
+    private function isDataAlreadyGiven(): bool
+    {
+        return User::where('name', 'chang180')->exists();
     }
 }

@@ -14,5 +14,7 @@
 <script src="https://cdn.paddle.com/paddle/paddle.js"></script>
 <script type="text/javascript">
     Paddle.Environment.set('sandbox');
-    Paddle.Setup({ vendor: {{ config('services.paddle.vendor-id') }} });
+    Paddle.Setup({
+        vendor: {{ config('services.paddle.vendor-id') }},
+    });
 </script>
