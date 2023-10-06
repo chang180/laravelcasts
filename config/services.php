@@ -34,6 +34,13 @@ return [
     'paddle' => [
         'vendor-id' => env('PADDLE_VENDOR_ID'),
         'public-key' => env('PADDLE_PUBLIC_KEY'),
-    ]
+    ],
+
+    'twitter' => [
+        'consumer_key' => env('TWITTER_CONSUMER_KEY'),
+        'consumer_secret' => env('TWITTER_CONSUMER_SECRET'),
+        'access_token' => env('TWITTER_ACCESS_TOKEN'),
+        'access_token_secret' => env('TWITTER_ACCESS_TOKEN_SECRET'),
+    ],
 
 ];

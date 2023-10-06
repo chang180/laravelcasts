@@ -5,8 +5,9 @@ use App\Http\Controllers\PageDashboardController;
 use App\Http\Controllers\PageHomeController;
 use App\Http\Controllers\PageVideosController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
-
+use PHPUnit\Event\Code\Test;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,3 +41,5 @@ Route::get('/pay', function () {
     return view('pay');
 });
 Route::post('/pay', [PaymentController::class, 'payment'])->name('pay');
+
+Route::get('/test', [TestController::class, 'test']);
